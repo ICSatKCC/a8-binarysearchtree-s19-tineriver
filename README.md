@@ -1,7 +1,7 @@
-# Assignment 4 - Pokedex Binary Search Tree
+# Assignment 7 - Pokedex Binary Search Tree
 
  * 100 points
- * Due Wed 11/23
+ * Due Thurs April 6th.
  
 ----
 
@@ -33,7 +33,7 @@ ordered by the Pokemon **number** datafield (NOT the compareTo method ordering!)
 In order to do this you must put Pokemon objects into PokeNodes and add the PokeNodes to the PokeTree object.
 
 ----
-**Use the example code in Laulima --> Resources --> Week 11 - Trees_Heaps as a template**
+**Use the example code in Laulima --> Resources --> Week 11 - Trees as a template**
 * BinaryNode.java
 * BinarySearchTree.java
 * BinarySearchTreeDriver.java
@@ -176,7 +176,7 @@ private void printPokeTree(PokeNode root){
 ---
 
 ##Extra Credit
-1. Add more Pokemon families. 10 points per family - see: [Species Stats](https://thesilphroad.com/research) 
+1. Add more Pokemon families. 1 point per family - see: [Species Stats](https://thesilphroad.com/research) 
 2. Add ASCII art images to your Pokemon classes and print them with the Pokedex. These can be stored as long Strings in your objects. examples: [Pokemon ASCII art](http://www.ascii-code.com/ascii-art/video-games/pokemon.php) (variable points)
 3. Rather than keeping the art directly in your Pokemon objects, make a HashMap with the Pokemon species as the key and the ASCII art string as the value. Store this as part of the PokeTree (hard coded to build when constructor is called) and access during printing. (variable points)
 
