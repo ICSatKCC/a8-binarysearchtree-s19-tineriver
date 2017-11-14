@@ -33,7 +33,7 @@ This project will simulate the Pokemon Go Pokedex. A modified Binary Search Tree
    1. a Pokemon
    2. An int count of how many times that Pokemon species has been caught. 
  
- - The PokeTree will be ordered by Pokemon **number** datafield (*NOT the compareTo method ordering!*) 
+ - The PokeTree will be ordered by key, this will be the Pokemon **number** datafield (*NOT the compareTo method ordering!*) 
 
  - In order to do this you must put Pokemon objects into PokeNodes and add the PokeNodes to the PokeTree object.
 
@@ -59,20 +59,23 @@ Required classes:
 The driver program should have a menu loop with these options:
 
 1. Catch Pokemon
-  * Add new Pokemon to the BST
+  * Add new Pokemon to the PokeTree
   * Increase the count of number caught of a Pokemon already in the tree.
-  * Use your sub-menu from Assignment 2 to choose Pokemon
+  * Use your sub-menu from Assignment 4 or 5 to choose Pokemon
   
 2. Trade Pokemon
-  * Lower the quantity of a caught Pokemon in the BST.
-  * Make sure you don't trade Pokemon you don't have! Caught quantity cannot become negative.
+  * Lower the quantity of a caught Pokemon in the PokeTree.
+  * Make sure you can't trade Pokemon you don't have! Caught quantity cannot become negative.
   * Remove Pokemon from the tree that are all traded away.
-  * Use your sub-menu from Assignment 2 to choose Pokemon
+  * Use your sub-menu from Assignment 4 or 5 to choose Pokemon
   
 3. Print Pokedex 
-  - This should print the Pokemon in the Pokedex ordered by number (inorder traversal) and how many of each have been caught.
+  - Print all the Pokemon in the Pokedex ordered by number (*inorder traversal*) and how many of each have been caught.
 
 0. Quit
+
+-----
+## Suggested Methods for your classes
 
 The class methods described below are there to give you an idea of what will be needed. 
 You are free to organize your project any way you want as long as you have AT LEAST these three required classes 
@@ -84,8 +87,6 @@ These may be included in the class files like some of our example code has done,
 ####Comments are very important
 Since you will have complete authority in regards to your code design, it is VERY important that you add explicit comments 
 to your code. This can add or take away points from your grade. 
-
-## Suggested Methods for your classes
 
 ### PokeNode.java
 
@@ -100,7 +101,7 @@ to your code. This can add or take away points from your grade.
  * This method will return a Pokemon object from inside a given node
  
 `public int getKey( )`
- * This method will return the number of the Pokemon object contained in a given node. This is the key for the BST.
+ * This method will return the number of the Pokemon species contained in a given node. This is the key for the PokeTree.
  
 `public int getNumCaught( )`
  * This method will return the numCaught from inside a given node
@@ -113,10 +114,10 @@ to your code. This can add or take away points from your grade.
 
 #### Set methods
 `public void increaseNumCaught( )`
- * This method will increment the numCaught from inside a given node
+ * This method will increment the numCaught in a node
  
  `public void decreaseNumCaught( )`
- * This method will decrement numCaught from inside a given node
+ * This method will decrement numCaught in a given node
  * Should throw an exception if it becomes < 1
  
 `public void setLChild( PokeNode newLChild)`
@@ -125,8 +126,7 @@ to your code. This can add or take away points from your grade.
 `public void setRChild( PokeNode newRChild)`
  * This method will set newRNode as the right child of a node
 
-**Note:** There is no setPokemon method. We don't want anybody to change the Pokemon in a node that is already part of the 
-binary search tree, this will make it inconsistent. 
+**Note:** There is no setPokemon method. We don't want anybody to change the species of Pokemon in a node that is already part of the tree, this will break the Binary Search Tree rules. 
 
 ---
 
@@ -134,18 +134,18 @@ binary search tree, this will make it inconsistent.
 
 ####Constructor:
 `public PokeTree( )`
- * Empty BST constructor.
+ * Empty PokeTree constructor.
 
-####Adding Pokemon: 
+#### Adding Pokemon: 
 `public void add( Pokemon p )`
- * This method should call the private recursive add method with root
+ * This method should call the private recursive add method with root (below)
  
 `private PokeNode add(PokeNode node, Pokemon p )`
  * Recursive add method
  * Should make a new node and put Pokemon p in it with numCaught = 1 if not already in the tree
- * Should increment numCaught if Pokemon already is in the tree
+ * Should increment numCaught if Pokemon p already is in the tree
  
-####Removing Pokemon:
+#### Removing Pokemon:
 **Hint: Do this part last, it is hardest because you have to reorder the tree**
 
 `public void remove( Pokemon p)`
@@ -156,7 +156,7 @@ binary search tree, this will make it inconsistent.
  * Removes Pokemon p from the tree if numCaught == 0
  * Throws exception if p not in the tree
  
-####Getting Pokemon in Tree by number:
+#### Getting Pokemon in Tree by number:
 `public Pokemon get(Pokemon searchKey){`
  * Public wrapper method that calles recursive method with root
  
@@ -165,16 +165,23 @@ binary search tree, this will make it inconsistent.
  * Returns Pokemon object with number == searchKey.getNumber()
  * Should throw an exception if Pokemon with number == searchKey.getNumber() not in the tree
  
-#### BST Print method:
-`public void printBSTree()`
+#### PokeTree Print method:
+`public void printPokeTree()`
+ * Overloaded wrapper method in order to access private data field `root` to send to recursive method.
+`private void preorderPokeTree(PokeNode root){`
+ * private recursive method that prints the PokeTree **inorder** 
+ 
+ Use the below example to print your tree in preorder, you can then modify it to make the printPokeTree methods:
+ 
+`public void preorderPokeTree()`
  * Overloaded wrapper method in order to access private data field `root` to send to recursive method.
  
 ```java	
-private void printPokeTree(PokeNode root){
+private void preorderPokeTree(PokeNode root){
       if(root != null){
        System.out.println("  " + root.getPokemon( ).toString() + "\nCaught: "+root.getNumCaught( ) );
-           printPokeTree(root.getLChild());
-           printPokeTree(root.getRChild());
+           preorderPokeTree(root.getLChild());
+           preorderPokeTree(root.getRChild());
       }
 }
 ```
