@@ -3,6 +3,7 @@
  * 100 points
  * Due Monday Nov 27th.
  * No code review for this one!
+ * Make a Pull Request with your final submission.
  
 ----
 
@@ -33,7 +34,7 @@ This project will simulate the Pokemon Go Pokedex. A modified Binary Search Tree
    1. a Pokemon
    2. An int count of how many times that Pokemon species has been caught. 
  
- - The PokeTree will be ordered by key, this will be the Pokemon **number** datafield (*NOT the compareTo method ordering!*) 
+ - The PokeTree will be ordered by key, this will be the Pokemon species **number** datafield (*NOT the compareTo method ordering!*) 
 
  - In order to do this you must put Pokemon objects into PokeNodes and add the PokeNodes to the PokeTree object.
 
@@ -54,7 +55,7 @@ Required classes:
 
 ---
 
-##Pokedex.java
+## Pokedex.java
 
 The driver program should have a menu loop with these options:
 
@@ -84,7 +85,7 @@ and functionality given above.
 Do not forget that you need to validate everything, thus you will need to have exception classes. 
 These may be included in the class files like some of our example code has done, or in their own files.
 
-####Comments are very important
+#### Comments are very important
 Since you will have complete authority in regards to your code design, it is VERY important that you add explicit comments 
 to your code. This can add or take away points from your grade. 
 
@@ -132,7 +133,7 @@ to your code. This can add or take away points from your grade.
 
 ### PokeTree.java
 
-####Constructor:
+#### Constructor:
 `public PokeTree( )`
  * Empty PokeTree constructor.
 
@@ -146,7 +147,7 @@ to your code. This can add or take away points from your grade.
  * Should increment numCaught if Pokemon p already is in the tree
  
 #### Removing Pokemon:
-**Hint: Do this part last, it is hardest because you have to reorder the tree**
+***Hint:*** Do this part last, it is hardest because you have to reorder the tree
 
 `public void remove( Pokemon p)`
  * Wrapper method that calls recursive remove method with root
@@ -168,12 +169,15 @@ to your code. This can add or take away points from your grade.
 #### PokeTree Print method:
 `public void printPokeTree()`
  * Overloaded wrapper method in order to access private data field `root` to send to recursive method.
+ 
 `private void preorderPokeTree(PokeNode root){`
  * private recursive method that prints the PokeTree **inorder** 
  
- Use the below example to print your tree in preorder, you can then modify it to make the printPokeTree methods:
- 
-`public void preorderPokeTree()`
+ Use the below example to print the PokeTree tree in preorder, you can then modify it to make the printPokeTree:
+
+```java
+public void preorderPokeTree()
+```
  * Overloaded wrapper method in order to access private data field `root` to send to recursive method.
  
 ```java	
@@ -185,13 +189,13 @@ private void preorderPokeTree(PokeNode root){
       }
 }
 ```
-* This recursive method takes the root as a parameter and will print tree in **preorder traversal**. 
-* It is good for debugging purposes.
-* You may copy and paste this method into your PokeTree class.
-
+ * The recursive method takes the root as a parameter and will print tree in **preorder traversal**. 
+ * It is good for debugging purposes.
+ * You may copy and paste this into your PokeTree class.
+ 
 ---
 
-##Extra Credit
+## Extra Credit
 1. Add more Pokemon families. 1 point per family - see: [Species Stats](https://thesilphroad.com/research) 
 2. Add ASCII art images to your Pokemon classes and print them with the Pokedex. These can be stored as long Strings in your objects. examples: [Pokemon ASCII art](http://www.ascii-code.com/ascii-art/video-games/pokemon.php) (variable points)
 3. Rather than keeping the art directly in your Pokemon objects, make a HashMap with the Pokemon species as the key and the ASCII art string as the value. Store this as part of the PokeTree (hard coded to build when constructor is called) and access during printing. (variable points)
