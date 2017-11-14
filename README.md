@@ -1,11 +1,12 @@
 # Assignment 7 - Pokedex Binary Search Tree
 
  * 100 points
- * Due Thurs April 6th.
+ * Due Monday Nov 27th.
+ * No code review for this one!
  
 ----
 
-Finally, we are going to make the Pokedex! 
+Finally, we are going to make the Pokedex! :video_game:
 
 In the Pokemon Go game, the Pokedex holds an entry for each species of Pokemon that you have 
 caught. This isn't your entire inventory of Pokemon, just a listing of each species you have seen and 
@@ -15,7 +16,7 @@ how many seen and caught.
  * Species are ordered by Number.
  
 You should submit the three new classes described below: 
- * Pokedex.java, 
+ * Pokedex.java
  * PokeTree.java
  * PokeNode.java. 
  
@@ -26,22 +27,27 @@ for this assignment.
 
 ## Program requirements and structure:
 
-This project will simulate the Pokemon Go Pokedex. A Binary Search Tree (BST) will function as the Pokedex database, a "PokeTree". 
-The BST will formed of nodes that contain Pokemon objects and a count of how many times the Pokemon has been caught. The BST will be 
-ordered by the Pokemon **number** datafield (NOT the compareTo method ordering!) 
+This project will simulate the Pokemon Go Pokedex. A modified Binary Search Tree (BST), a "PokeTree" will function as the Pokedex database. 
 
-In order to do this you must put Pokemon objects into PokeNodes and add the PokeNodes to the PokeTree object.
+ - The PokeTree will formed of nodes that each contain two data items:
+   1. a Pokemon
+   2. An int count of how many times that Pokemon species has been caught. 
+ 
+ - The PokeTree will be ordered by Pokemon **number** datafield (*NOT the compareTo method ordering!*) 
+
+ - In order to do this you must put Pokemon objects into PokeNodes and add the PokeNodes to the PokeTree object.
 
 ----
-**Use the example code in Laulima --> Resources --> Week 11 - Trees as a template**
+**Use the example code in Laulima --> Resources --> Week 12 - Trees as a template**
 * BinaryNode.java
 * BinarySearchTree.java
 * BinarySearchTreeDriver.java
 
-Except in this assignment, you're not going to make a generic BST, it should be tailored specifically to Pokemon objects.
+**Except** in this assignment, you're not going to make a generic BST, it should be tailored specifically to Pokemon objects (see below).
 
 --- 
 Required classes:
+---
 * Pokedex.java, which is your driver class
 * PokeTree.java, which will implement all the binary search tree functionality
 * PokeNode.java, (tree node) which will create nodes for your tree.
@@ -50,20 +56,23 @@ Required classes:
 
 ##Pokedex.java
 
-The driver program should have a menu loop with these functionalities:
+The driver program should have a menu loop with these options:
 
-* Catch Pokemon
+1. Catch Pokemon
   * Add new Pokemon to the BST
   * Increase the count of number caught of a Pokemon already in the tree.
   * Use your sub-menu from Assignment 2 to choose Pokemon
   
-* Trade Pokemon
+2. Trade Pokemon
   * Lower the quantity of a caught Pokemon in the BST.
   * Make sure you don't trade Pokemon you don't have! Caught quantity cannot become negative.
   * Remove Pokemon from the tree that are all traded away.
   * Use your sub-menu from Assignment 2 to choose Pokemon
   
-* Print out the Pokedex of Pokemon ordered by number (inorder traversal)  and how many of each have been caught.
+3. Print Pokedex 
+  - This should print the Pokemon in the Pokedex ordered by number (inorder traversal) and how many of each have been caught.
+
+0. Quit
 
 The class methods described below are there to give you an idea of what will be needed. 
 You are free to organize your project any way you want as long as you have AT LEAST these three required classes 
