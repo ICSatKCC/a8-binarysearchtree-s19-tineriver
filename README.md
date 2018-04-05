@@ -1,9 +1,8 @@
 # Assignment 7 - Pokedex Binary Search Tree
 
  * 100 points
- * Due Monday Nov 27th.
- * No code review for this one!
- * Make a Pull Request with your final submission.
+ * Pull Request for code review due Thurs. April 12.
+ * Final version due Tuesday April 17th.
  
 ----
 
@@ -39,10 +38,10 @@ This project will simulate the Pokemon Go Pokedex. A modified Binary Search Tree
  - In order to do this you must put Pokemon objects into PokeNodes and add the PokeNodes to the PokeTree object.
 
 ----
-**Use the example code in Laulima --> Resources --> Week 12 - Trees as a template**
+**Use the example code in Laulima --> Resources --> Session 24 - BinarySearchTree as a template**
 * BinaryNode.java
 * BinarySearchTree.java
-* BinarySearchTreeDriver.java
+* TreeException.java
 
 **Except** in this assignment, you're not going to make a generic BST, it should be tailored specifically to Pokemon objects (see below).
 
@@ -102,7 +101,7 @@ to your code. This can add or take away points from your grade.
  * This method will return a Pokemon object from inside a given node
  
 `public int getKey( )`
- * This method will return the number of the Pokemon species contained in a given node. This is the key for the PokeTree.
+ * This method will return the Pokemon species' number of the Pokemon in a given node. This is the key for the PokeTree.
  
 `public int getNumCaught( )`
  * This method will return the numCaught from inside a given node
@@ -127,7 +126,7 @@ to your code. This can add or take away points from your grade.
 `public void setRChild( PokeNode newRChild)`
  * This method will set newRNode as the right child of a node
 
-**Note:** There is no setPokemon method. We don't want anybody to change the species of Pokemon in a node that is already part of the tree, this will break the Binary Search Tree rules. 
+**Note:** There is no public setPokemon method. We don't want anybody to change the species of Pokemon in a node that is already part of the tree, this will break the Binary Search Tree rules. You can make a private one as a helper method for removing if you want to.
 
 ---
 
