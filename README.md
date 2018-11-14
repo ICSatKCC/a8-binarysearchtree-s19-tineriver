@@ -1,8 +1,9 @@
 # Assignment 7 - Pokedex Binary Search Tree
 
  * 100 points
- * Pull Request for code review due Thurs. April 12.
- * Final version due Tuesday April 17th.
+ * Pull Request for code review due Tues. Nov 27.
+ * Code reviews must be done by Nov. 28
+ * Final version due Thurs. Nov 29th.
  
 ----
 
@@ -29,7 +30,7 @@ for this assignment.
 
 This project will simulate the Pokemon Go Pokedex. A modified Binary Search Tree (BST), a "PokeTree" will function as the Pokedex database. 
 
- - The PokeTree will formed of nodes that each contain two data items:
+ - The PokeTree will formed of nodes that each contain **two** data items:
    1. a Pokemon
    2. An int count of how many times that Pokemon species has been caught. 
  
@@ -169,10 +170,10 @@ to your code. This can add or take away points from your grade.
 `public void printPokeTree()`
  * Overloaded wrapper method in order to access private data field `root` to send to recursive method.
  
-`private void preorderPokeTree(PokeNode root){`
+`private void printPokeTree(PokeNode root){`
  * private recursive method that prints the PokeTree **inorder** 
  
- Use the below example to print the PokeTree tree in preorder, you can then modify it to make the printPokeTree:
+ Use the below example to print the PokeTree tree in preorder, you can then modify the order to make the printPokeTree:
 
 ```java
 public void preorderPokeTree()
