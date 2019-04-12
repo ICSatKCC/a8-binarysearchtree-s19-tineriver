@@ -1,12 +1,18 @@
-# Assignment 7 - Pokedex Binary Search Tree
+# Assignment 8 - Pokedex Binary Search Tree
 
  * 100 points
- * Pull Request for code review due Tues. Nov 27.
- * Code reviews must be done by Nov. 28
- * Final version due Thurs. Nov 29th.
+ * Pull Request for code review due Tues. Apr 23.
+ * Code reviews must be done by Apr 24
+ * Final version due Thurs. Apr 25th.
  
 ----
+Learning Outcomes:
 
+For this assignment, you will practice/learn:
+* Creating and using binary search trees.
+* Use binary tree traversals.
+* Practice your skills in creating and communicating several classes.
+----
 Finally, we are going to make the Pokedex! :video_game:
 
 In the Pokemon Go game, the Pokedex holds an entry for each species of Pokemon that you have 
@@ -39,7 +45,7 @@ This project will simulate the Pokemon Go Pokedex. A modified Binary Search Tree
  - In order to do this you must put Pokemon objects into PokeNodes and add the PokeNodes to the PokeTree object.
 
 ----
-**Use the example code in Laulima --> Resources --> Session 24 - BinarySearchTree as a template**
+**Use the example code in Laulima --> Resources --> Session 25 - BinarySearchTree as a template**
 * BinaryNode.java
 * BinarySearchTree.java
 * TreeException.java
@@ -197,17 +203,53 @@ private void preorderPokeTree(PokeNode root){
 
 ## Extra Credit
 1. Add more Pokemon families. 1 point per family - see: [Species Stats](https://thesilphroad.com/research) 
-2. Add ASCII art images to your Pokemon classes and print them with the Pokedex. These can be stored as long Strings in your objects. examples: [Pokemon ASCII art](http://www.ascii-code.com/ascii-art/video-games/pokemon.php) (variable points)
-3. Rather than keeping the art directly in your Pokemon objects, make a HashMap with the Pokemon species as the key and the ASCII art string as the value. Store this as part of the PokeTree (hard coded to build when constructor is called) and access during printing. (variable points)
+2. Add ASCII art images to your Pokemon classes and print them with the Pokedex. These can be stored as long Strings in your objects. Or make a HashMap with the Pokemon species as the key and the ASCII art string as the value. Store this as part of the PokeTree (hard coded to build when constructor is called) and access during printing. examples: [Pokemon ASCII art](http://www.ascii-code.com/ascii-art/video-games/pokemon.php) (variable points)
+3. Write JUnit tests for the PokeTree and PokeNode classes. These should test all functionality listed in the Grading Rubric (main method/driver class doesn't need test). (50 points).
 
-----
 
-Learning Outcomes:
+## Grading Rubric
 
-For this assignment, you will practice/learn:
-* Creating and using binary search trees.
-* Use binary tree traversals.
-* Practice your skills in creating and communicating several classes.
+### Code Review 10/10
+- [x] Review Code For: (      )
+- [x] Reply to Review From: (        )
 
----
+### Pokedex Driver 20/20
+- [x] Catch Pokemon
+ *  Add new Pokemon to the BST
+ *  Increase the count of number caught of a Pokemon already in the tree.
+- [x] Trade Pokemon
+ * Lower the quantity of a caught Pokemon in the BST.
+ * Caught quantity cannot become negative.
+ * Remove Pokemon from the tree that are all traded away.
+- [x]  Print out the Pokedex
+
+- [x] Commenting and coding style
+
+
+### PokeNode 20/20
+- [x]  Node constructor
+ *  Pokemon should be a non-null object.
+ *  numCaught should be >= 1.
+ * lChild and rChild are PokeNodes.
+
+- [x]  Get methods
+- [x]  Set methods
+ * increaseNumCaught( )
+ * decreaseNumCaught( )
+ * no (or private) setPokemon method. 
+- [x] Commenting and coding style
+
+### PokeTree.java 50/50
+- [x] Constructor:
+- [x] public/private add methods
+- [x] public/private remove methods
+ * decrements numCaught
+ * Removes Pokemon p from the tree if numCaught == 0
+ * Throws exception if p not in the tree
+- [x] Getting Pokemon in Tree by number:
+ * public/private get methods
+ * throws exception if Pokemon not in the tree
+- [x] Inorder traversal print method
+- [x] Commenting and coding style
+------
 If you have any questions please e-mail Lisa:  ljmiller@hawaii.edu
