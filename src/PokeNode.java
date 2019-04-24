@@ -25,8 +25,19 @@ public class PokeNode<P> {
    */
    public PokeNode( Pokemon P, int numCaught,
          PokeNode lChild, PokeNode rChild) {
-      data = P; //Pokemon should be a non-null object.***
-      num = numCaught; //numCaught should be >= 1.***
+      //Pokemon should be a non-null object.
+      if (P != null) {   
+      data = P; 
+      } else {
+         System.out.println("Pokemon should be a non-null object.");
+      }
+      //numCaught should be >= 1.
+      if (numCaught >= 1) {
+      num = numCaught; 
+      } else {
+         System.out.println("numCaught should be >= 1.");
+      }
+      
       left = lChild;
       right = rChild;  
    }  //end constructor
