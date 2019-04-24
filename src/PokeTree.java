@@ -68,20 +68,82 @@ public class PokeTree<p> {
       }
    }
 //------- REMOVE METHOD -------
-
-   //public void remove( Pokemon p) {
    
-   //}
+   /** Removes a Pokemon from the tree.
+   * @param p Pokemon object to remove.
+   */
+   public void remove( Pokemon p) {
+      root = this.remove(root, p);
+   }
 
-//Wrapper method that calls recursive remove method with root
+   /**Recursively removes Pokemon from the tree.   
+   * @param node  The root of the tree/subtree
+   * @param p     Pokemon to remove.
+   * @return root of current subtree.
+   * @throws RuntimeException if item not found in tree.
+   */
+   private PokeNode remove(PokeNode node, Pokemon p) {
+      // if item not found, throw exception
+      if (node == null) {
+         throw new RuntimeException("Item not found!");
+      }
+      else if (p.getNumber() == node.getKey()
+               && p.getName().equals(node.getPokemon().getName())){
+      // call private method remove
+         node = this.remove(node);
+         return node;
+      }
+      // if Pokemon number is less than node's number,
+      // continue to left subtree
+      else if (p.getNumber() < node.getKey()) {
+         node.setLChild(this.remove(node.getLChild(), p));
+         return node;
+      }
+      // if Pokemon number is greater than node's number,
+      // continue to right subtree
+      else {
+         node.setRChild(this.remove(node.getRChild(), p));
+         return node;
+      
+      // found node containing object with same search key,
+      // so delete it
+      }
+   }
+      
+   /**Helper method that takes a node out of tree.
+   * @param node The node to remove
+   * @return The node that replaces removed node or null.
+   */
+   private PokeNode<p> remove(PokeNode<p> node) {
+   // if node is a leaf,return null
+      if (node.getLChild() == null && node.getRChild() == null) {
+         return null;
+      }
+      // if node has a single right child node,
+      // then return a reference to the right child node
+      else if (node.getLChild() == null) {
+         return node.getRChild();
+      }
+      // if node has a single left child node,
+      // then return a reference to the left child node
+      else (node.getRChild() == null) {
+         return node.getLChild();
+      }
+     
+      
+}
 
-   //private PokeNode remove(PokeNode node, Pokemon p) {
+
+
+
+
    
-   //}
+   
 
 //decrements numCaught
 //Removes Pokemon p from the tree if numCaught == 0
 //Throws exception if p not in the tree
+
 
 
 //------- GET METHOD -------
@@ -98,6 +160,7 @@ public class PokeTree<p> {
    * @param node The root of the tree/subtree
    * @param searchKey An object storing the key to get.
    * @return the Pokemon object in tree with matching key.
+   * @throws RuntimeException if item not found in tree.
    */
    private Pokemon get(PokeNode node, Pokemon searchKey) {
    // if not found, throw exception
@@ -123,9 +186,7 @@ public class PokeTree<p> {
          }
       }
    }
-//Private recursive get method
-//Returns Pokemon object with number == searchKey.getNumber()
-//Should throw an exception if Pokemon with number == searchKey.getNumber() not in the tree
+
 
 
 //------- PRINT METHOD --------
@@ -182,7 +243,8 @@ public class PokeTree<p> {
       tree.add(new Venusaur());
       tree.add(new Blastoise());
       tree.add(new Charizard());
-      tree.add(new Squirtle("Jesse"));
+      Pokemon j = new Squirtle("Jesse");
+      tree.add(j);
       tree.add(new Charmander("Sunny"));
       Pokemon s = new Squirtle("Tom");
       tree.add(s);
@@ -196,7 +258,15 @@ public class PokeTree<p> {
       System.out.println("\n\nTest get() method:");
       
       System.out.println(tree.get(s).toString());
+      Pokemon a = new Charmeleon();
       
+      System.out.println("\n\nTest remove() method:");
+      tree.remove(j);
+      tree.printPokeTree();
+      
+      
+      //throws runtime error "not found"
+      //System.out.println(tree.get(a).toString());
       
    }  //end main
 
