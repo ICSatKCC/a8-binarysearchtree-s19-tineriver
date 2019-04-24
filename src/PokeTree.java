@@ -90,7 +90,7 @@ public class PokeTree<p> {
       else if (p.getNumber() == node.getKey()
                && p.getName().equals(node.getPokemon().getName())){
       // call private method remove
-         node = this.remove(node);
+         node = null; //***WRONG*** 
          return node;
       }
       // if Pokemon number is less than node's number,
@@ -109,34 +109,6 @@ public class PokeTree<p> {
       // so delete it
       }
    }
-      
-   /**Helper method that takes a node out of tree.
-   * @param node The node to remove
-   * @return The node that replaces removed node or null.
-   */
-   private PokeNode<p> remove(PokeNode<p> node) {
-   // if node is a leaf,return null
-      if (node.getLChild() == null && node.getRChild() == null) {
-         return null;
-      }
-      // if node has a single right child node,
-      // then return a reference to the right child node
-      else if (node.getLChild() == null) {
-         return node.getRChild();
-      }
-      // if node has a single left child node,
-      // then return a reference to the left child node
-      else (node.getRChild() == null) {
-         return node.getLChild();
-      }
-     
-      
-}
-
-
-
-
-
    
    
 
@@ -203,7 +175,7 @@ public class PokeTree<p> {
          if (root != null) {
             printPokeTree(root.getLChild());
             System.out.println("  " + root.getPokemon( ).toString() 
-               + "\nCaught: "+root.getNumCaught( ) ); 
+               + "\nCaught: "+root.getNumCaught( ) + "\n" ); 
             printPokeTree(root.getRChild());
          }   
       }

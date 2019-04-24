@@ -16,7 +16,13 @@ public class Pokedex {
    private static Random randGen = new Random();
    /**BORDER.*/
    private static String b = "------------------------------------------------";
-
+   /**POKETREE.*/
+   private static PokeTree<Pokemon> tree = new PokeTree<Pokemon>();
+   /**TEMP POKEMON OBJ.*/
+   private static Pokemon p;
+   /**CAUGHT.*/
+   private static int Count = 0;
+   
    /** Main Method.
    *@param     args not used
    */
@@ -43,13 +49,20 @@ public class Pokedex {
                System.out.println("Good bye!");
                break;
             case "1": //adds Pokemon catched
-               
+               System.out.println("Catch a Pokemon"); 
+               p = ChoosePokemon.choosePokemon();
+               tree.add(p);
+               Count++;
                break;
             case "2": //remove Pokemon Traded
-               
+               p = ChoosePokemon.choosePokemon();
+               tree.remove(p);
+               Count--;
                break;
             case "3": //prints Pokedex
-
+                  System.out.println("Pokemon caught: " + Count + "\n");
+                  tree.printPokeTree();
+                  System.out.println("\n" + b);
                break;
             default: //not a valid menu entry
                System.out.println("\n****Invalid menu choice.****");
