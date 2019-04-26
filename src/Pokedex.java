@@ -62,7 +62,9 @@ public class Pokedex {
                } catch (RuntimeException nfe) {
                   System.out.println("The Pokemon you chose does not exist");
                }
-               Count--;
+               if (Count > 0) {
+                  Count--;
+               }
                break;
             case "3": //prints Pokedex
                System.out.println("Pokemon caught: " + Count + "\n");
