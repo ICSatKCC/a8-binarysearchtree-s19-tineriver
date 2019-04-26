@@ -23,17 +23,17 @@ public class PokeNode<P> {
    * @param lChild      The address of left child
    * @param rChild      The address of right child
    */
-   public PokeNode( Pokemon P, int numCaught,
+   public PokeNode(Pokemon P, int numCaught,
          PokeNode lChild, PokeNode rChild) {
       //Pokemon should be a non-null object.
       if (P != null) {   
-      data = P; 
+         data = P; 
       } else {
          System.out.println("Pokemon should be a non-null object.");
       }
       //numCaught should be >= 1.
       if (numCaught >= 1) {
-      num = numCaught; 
+         num = numCaught; 
       } else {
          System.out.println("numCaught should be >= 1.");
       }
@@ -45,41 +45,41 @@ public class PokeNode<P> {
    
    /**
    * GETPOKEMON METHOD.
-   * returns a Pokemon object from inside a given node
+   * @returns data Pokemon object from inside a given node
    */
-   public Pokemon getPokemon( ) {
+   public Pokemon getPokemon() {
       return data;
    }
    
    /**
    * GETKEY METHOD.
-   * return the Pokemon species' number of the Pokemon in a given node.***
+   * @return the Pokemon species' number of the Pokemon in a given node.***
    */
-   public int getKey( ) {
-    return data.getNumber();
+   public int getKey() {
+      return data.getNumber();
    }
    
     /**
    * GETNUMCAUGHT METHOD.
-   * return the numCaught from inside a given node
+   * @return the num from inside a given node
    */
-   public int getNumCaught( ) {
+   public int getNumCaught() {
       return num;
    }
    
    /**
    * GETLCHILD METHOD.
-   * return the left child of a given node
+   * @return left the left child of a given node
    */
-   public PokeNode getLChild( ) {
+   public PokeNode getLChild() {
       return left;
    }
    
    /**
    * GETRCHILD METHOD.
-   * return the right child of a given node
+   * @return right the right child of a given node
    */
-   public PokeNode getRChild( ) {
+   public PokeNode getRChild() {
       return right;
    }
 
@@ -89,7 +89,7 @@ public class PokeNode<P> {
    * IncreaseNumCaught METHOD.
    * increments the numCaught in a node
    */
-   public void increaseNumCaught( ) {
+   public void increaseNumCaught() {
       num++;
    }
 
@@ -98,8 +98,8 @@ public class PokeNode<P> {
    * decrements numCaught in a given node
    * throws an exception if it becomes < 1 ***
    */
-   public void decreaseNumCaught( ) {
-      num++;
+   public void decreaseNumCaught() {
+      num--;
    }
 
    /**
@@ -107,19 +107,26 @@ public class PokeNode<P> {
    * sets newLNode as the left child of a node
    * @param newLChild    new left child adress
    */
-   public void setLChild( PokeNode newLChild) {
+   public void setLChild(PokeNode newLChild) {
       left = newLChild;
    }
    
    /**
    * SetRChild METHOD.
-   * sets newLNode as the right child of a node
+   * sets newRNode as the right child of a node
    * @param newRChild   new right child adress
    */
-   public void setRChild( PokeNode newRChild) {
+   public void setRChild(PokeNode newRChild) {
       right = newRChild;
    }
 
-
+   /**
+   * SetPokemon METHOD.
+   * sets newPokemon as the new data of a node
+   * @param newPokemon   new new data adress ***doesn't change species***
+   */
+   public void setPokemon(Pokemon newPokemon) {
+      data = newPokemon;
+   }
 
 }

@@ -28,7 +28,7 @@ public class Pokedex {
    */
    public static void main(String[] args) { 
    
-   boolean endLoop = false;
+      boolean endLoop = false;
    
       //loop until stopping condition is given
       while (!endLoop) {
@@ -37,7 +37,7 @@ public class Pokedex {
          System.out.println("Interactive Pokedex.");
          System.out.println("1. Add Pokemon");
          System.out.println("2. Trade Pokemon");
-         System.out.println("3. Print Pokeded");
+         System.out.println("3. Print Pokedex");
          System.out.println("0. Exit the program");
          System.out.println("What would you like to do?");
          
@@ -55,14 +55,19 @@ public class Pokedex {
                Count++;
                break;
             case "2": //remove Pokemon Traded
+               System.out.println("Choose a Pokemon to Trade");
                p = ChoosePokemon.choosePokemon();
-               tree.remove(p);
+               try {
+                  tree.remove(p);
+               } catch (RuntimeException nfe) {
+                  System.out.println("The Pokemon you chose does not exist");
+               }
                Count--;
                break;
             case "3": //prints Pokedex
-                  System.out.println("Pokemon caught: " + Count + "\n");
-                  tree.printPokeTree();
-                  System.out.println("\n" + b);
+               System.out.println("Pokemon caught: " + Count + "\n");
+               tree.printPokeTree();
+               System.out.println("\n" + b);
                break;
             default: //not a valid menu entry
                System.out.println("\n****Invalid menu choice.****");
@@ -70,8 +75,8 @@ public class Pokedex {
                break;
          }  //end Switch menu statement   
       }  //end While endLoop
-
-
-}  //end main
+   
+   
+   }  //end main
 
 }

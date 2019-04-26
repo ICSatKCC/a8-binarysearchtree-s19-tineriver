@@ -1,17 +1,17 @@
 /**
-* Poke
+* PokeTree Class.
 * @author Kristine Rivera
 * @since 4/22/19
+* @param <p> holds generic type object
 */
 public class PokeTree<p> {
 
    /** Root node instance variable. */
    private PokeNode<p> root = null;
-   
+   /** counter for incrementing numCaught. */
    private static int plus = 0;
-   
    /**Empty PokeTree constructor.*/
-   public PokeTree( ) {
+   public PokeTree() {
       //root already initialized
    }
    
@@ -31,7 +31,7 @@ public class PokeTree<p> {
    * @param p     The object to be added
    * @return The current node
    */
-   private PokeNode add(PokeNode node, Pokemon p ) {
+   private PokeNode add(PokeNode node, Pokemon p) {
    
    // base case: empty tree or end of a leaf
       if (node == null) {
@@ -72,7 +72,7 @@ public class PokeTree<p> {
    /** Removes a Pokemon from the tree.
    * @param p Pokemon object to remove.
    */
-   public void remove( Pokemon p) {
+   public void remove(Pokemon p) {
       root = this.remove(root, p);
    }
 
@@ -88,21 +88,30 @@ public class PokeTree<p> {
          throw new RuntimeException("Item not found!");
       }
       else if (p.getNumber() == node.getKey()
-               && p.getName().equals(node.getPokemon().getName())){
+               && p.getName().equals(node.getPokemon().getName())) {
       // call private method remove
-         node = null; //***WRONG*** 
+         node = this.remove(node); //sends to remove helper method
+         if (p.getNumber() == node.getKey()) {
+            node.decreaseNumCaught();
+         }
          return node;
       }
       // if Pokemon number is less than node's number,
       // continue to left subtree
       else if (p.getNumber() < node.getKey()) {
          node.setLChild(this.remove(node.getLChild(), p));
+         if (node.getKey() == node.getLChild().getKey()) {
+            node.decreaseNumCaught();
+         }
          return node;
       }
       // if Pokemon number is greater than node's number,
       // continue to right subtree
       else {
          node.setRChild(this.remove(node.getRChild(), p));
+         if (node.getKey() == node.getRChild().getKey()) {
+            node.decreaseNumCaught();
+         }
          return node;
       
       // found node containing object with same search key,
@@ -110,11 +119,81 @@ public class PokeTree<p> {
       }
    }
    
+   /** Helper method that takes a node out of tree.
+   * @param node The node to remove
+   * @return The node that replaces removed node or null.
+   */
+   private PokeNode<p> remove(PokeNode<p> node) {
+   // if node is a leaf,return null
+      if (node.getLChild() == null && node.getRChild() == null) {
+         return null;
+      }
+      // if node has a single right child node,
+      // then return a reference to the right child node
+      else if (node.getLChild() == null) {
+         return node.getRChild();
+      }
+      // if node has a single left child node,
+      // then return a reference to the left child node
+      else if (node.getRChild() == null) {
+         return node.getLChild();
+      }
+      // if the node has two child nodes
+      else {
+      // get next Smaller Item, which is Largest Item in Left Subtree
+      // The next Smaller Item is stored at the rightmost node in the left
+      // subtree.
+         Pokemon largestItemInLeftSubtree = 
+            this.getItemWithLargestSearchKey(node.getLChild());
+      // replace the node's item with this item
+         node.setPokemon(largestItemInLeftSubtree); 
+      // delete the rightmost node in the left subtree
+         node.setLChild(this.removeNodeWithLargestSearchKey(node
+             .getLChild()));
+         return node;
+      }
+   }
    
+   /**
+   * Returns the item with the largest search key in the (sub)tree.
+   * Helper method for removing interior nodes.
+   * @param node The root of the tree/subtree
+   * @return The data item with largest key
+   */
+   private Pokemon getItemWithLargestSearchKey(PokeNode<p> node) {
+   // if no right child, then this node contains the largest item
+      if (node.getRChild() == null) {
+         return node.getPokemon();
+      }
+      // if not, keep looking on the right
+      else {
+         return this.getItemWithLargestSearchKey(node.getRChild());
+      }
+   }
 
-//decrements numCaught
-//Removes Pokemon p from the tree if numCaught == 0
-//Throws exception if p not in the tree
+  /**
+   * Removes the node with the largest search key.
+   * Helper method for removing interior nodes.
+   * Remove the node formerly occupied by item with largest search key.
+   * To be called after item is moved to new node location.
+   * 
+   * @param node The root of the tree/subtree
+   * @return root of (sub)tree with node removed.
+   */
+   private PokeNode<p> removeNodeWithLargestSearchKey(PokeNode<p> node) {
+   // if no right child, then this node contains the largest item
+   // so replace it with its left child
+      if (node.getRChild() == null) {
+         return node.getLChild();
+      }
+      // if not, keep looking on the right
+      else {
+         node.setRChild(this.removeNodeWithLargestSearchKey(node
+             .getRChild()));
+         return node;
+      }
+   }
+    
 
 
 
@@ -174,15 +253,16 @@ public class PokeTree<p> {
       try {
          if (root != null) {
             printPokeTree(root.getLChild());
-            System.out.println("  " + root.getPokemon( ).toString() 
-               + "\nCaught: "+root.getNumCaught( ) + "\n" ); 
+            System.out.println("  " + root.getPokemon().toString() 
+               + "\nCaught: " + root.getNumCaught() + "\n"); 
             printPokeTree(root.getRChild());
          }   
       }
       catch (NullPointerException nfe) {
       }
    }
-
+   
+   
    /** Pre-order transversal print method. */
    public void preorderPokeTree() {
       this.preorderPokeTree(root);
@@ -192,9 +272,9 @@ public class PokeTree<p> {
    * @param root  The root of the tree/subtree
    */
    private void preorderPokeTree(PokeNode root) {
-      if(root != null){
-         System.out.println("  " + root.getPokemon( ).toString() 
-            + "\nCaught: "+root.getNumCaught( ) );
+      if (root != null) {
+         System.out.println("  " + root.getPokemon().toString() 
+            + "\nCaught: " + root.getNumCaught());
          preorderPokeTree(root.getLChild());
          preorderPokeTree(root.getRChild());
       }
@@ -221,7 +301,7 @@ public class PokeTree<p> {
       Pokemon s = new Squirtle("Tom");
       tree.add(s);
    
-      System.out.println( "\n\nTest printPokeTree() method:");
+      System.out.println("\n\nTest printPokeTree() method:");
       tree.printPokeTree();
    
       System.out.println("\n\nTest preorderPokeTree() method:");
@@ -232,6 +312,8 @@ public class PokeTree<p> {
       System.out.println(tree.get(s).toString());
       Pokemon a = new Charmeleon();
       
+      //Removes Jesse but Tom should still be there 
+      //and his numcaught should be 2***
       System.out.println("\n\nTest remove() method:");
       tree.remove(j);
       tree.printPokeTree();
